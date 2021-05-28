@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Index</title>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+<script type="text/javascript">
+
+    function sleep (time) {
+    return new Promise((resolve) => setTimeout(resolve, time));
+    }
+
+    function autoOn(){
+        setTimeout(autoOn,6*1000);
+        var jsonData = {"deviceid":"","data":{"switch": "on"}};
+        $.ajax({
+            url:"http://192.168.1.114:8081/zeroconf/switch",
+            type:"POST",
+            dataType:"json",
+            contentType:"application/json;charset=utf-8",
+            data:JSON.stringify(jsonData),
+            success:function(response){
+                console.log(response);
+            },
+            error:function(msg){
+                console.log(msg);
+            }
+        });
+    };
+
+    function autoOff(){
+        setTimeout(autoOff,6*1000);
+        var jsonData = {"deviceid":"","data":{"switch": "off"}};
+        $.ajax({
+            url:"http://192.168.1.114:8081/zeroconf/switch",
+            type:"POST",
+            dataType:"json",
+            contentType:"application/json;charset=utf-8",
+            data:JSON.stringify(jsonData),
+            success:function(response){
+                console.log(response);
+            },
+            error:function(msg){
+                console.log(msg);
+            }
+        });
+    };
+
+    function autoFunction(){
+        autoOn();
+        sleep(3*1000).then(()=>{
+            autoOff();
+        });
+    };
+
+
+    $(function(){
+        $("#on").click(function(){
+            $.get("jdiFlagOnFun");
+            // var jsonData = {"deviceid":"","data":{"switch": "on"}};
+            // $.ajax({
+            //     url:"http://192.168.1.114:8081/zeroconf/switch",
+            //     type:"POST",
+            //     dataType:"json",
+            //     contentType:"application/json;charset=utf-8",
+            //     data:JSON.stringify(jsonData),
+            //     success:function(response){
+            //         console.log(response);
+            //     },
+            //     error:function(msg){
+            //         console.log(msg);
+            //     }
+
+            // });
+        });
+
+        $("#off").click(function(){
+            $.get("jdiFlagOffFun");
+            // var jsonData = {"deviceid":"","data":{"switch": "off"}};
+            // $.ajax({
+            //     url:"http://192.168.1.114:8081/zeroconf/switch",
+            //     type:"POST",
+            //     dataType:"json",
+            //     contentType:"application/json;charset=utf-8",
+            //     data:JSON.stringify(jsonData),
+            //     success:function(response){
+            //         console.log(response);
+            //     },
+            //     error:function(msg){
+            //         console.log(msg);
+            //     }
+
+            // });
+        });
+
+        $("#autoSwitch").click(function(){
+            $.get("jdiAutoFun");
+        });
+
+        $("#test").click(function(){
+            sleep(3*1000).then(()=>{
+                $("#testArea img").attr('src','https://www.supermoto8.net/images/article/a1202bfa8387d8005991cca4fe765b462.jpg');
+            });
+        });
+
+    });
+</script>
+</head>
+<body>
+    <h1>Sonoff Controlle</h1>
+    <button name="on" id="on">ON</button>
+    <button name="off" id="off">OFF</button>
+    <div><button name="autoSwitch" id="autoSwitch">AUTO</button></div>
+    <div><button name="test" id="test">test</button></div>
+    <div name="testArea" id="testArea"><img src="" alt=""></div>
+</body>
+</html>
