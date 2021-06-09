@@ -1,0 +1,204 @@
+.switch {
+    /*==設定開關鈕的長寬==*/
+    position: relative;
+    width: 65px;
+    height: 30px;
+    line-height: 30px;
+}
+
+.switch-checkbox {
+    position: absolute;
+    display: none;
+}
+
+.switch-label {
+    display: block;
+    overflow: hidden;
+    cursor: pointer;
+    border-radius: 20px;
+}
+
+.switch-txt {
+    display: block;
+    width: 200%;
+    margin-left: -100%;
+    transition: margin 0.3s ease-in 0s;
+}
+
+.switch-txt::before,
+.switch-txt::after {
+    display: block;
+    float: right;
+    width: 50%;
+    font-size: 13px;
+    color: #fff;
+    font-weight: bold;
+    box-sizing: border-box;
+}
+
+
+/*==開關鈕底色(開啟時)==*/
+
+.switch-txt::after {
+    content: attr(turnOn);
+    padding-left: 10px;
+    background: #1ba0ef;
+    color: #fff;
+}
+
+
+/*開關鈕底色(關閉時)*/
+
+.switch-txt::before {
+    content: attr(turnOff);
+    padding-right: 10px;
+    background: #eee;
+    color: #ccc;
+    text-align: right;
+}
+
+
+/*==開關鈕的顏色與大小==*/
+
+.switch-Round-btn {
+    position: absolute;
+    display: block;
+    width: 26px;
+    height: 26px;
+    margin: 2px;
+    background: #fff;
+    top: 0;
+    bottom: 0;
+    right: 35px;
+    border-radius: 13px;
+    transition: all 0.3s ease-in 0s;
+}
+
+.switch-checkbox:checked+.switch-label .switch-txt {
+    margin-left: 0;
+}
+
+.switch-checkbox:checked+.switch-label .switch-Round-btn {
+    right: 0;
+}
+
+
+/* -------------------------------------------- 背景+設備位子 -------------------------------------------- */
+
+.flex {
+    /* display: flex;
+    height: 70px;
+    padding: 10px;
+    background-color: #ff8520;
+    */
+    /* // 修改以下值試試看 wrap | nowrap | wrap | wrap-reverse */
+    /* flex-wrap: wrap; */
+    display: flex;
+    flex-direction: row;
+}
+
+
+/* .container {
+    display: flex;
+    flex-direction: row;
+} */
+
+.item {
+    flex: 1 0 30%;
+    background-color: #2d6400;
+    margin: 5px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    font-size: 2rem;
+}
+
+.flex-2 {
+    flex-grow: 1;
+    flex-shrink: 1;
+    flex-basis: 4%;
+    background-color: #2d6400;
+}
+
+
+/* -------------------------------------------- 按鈕UI -------------------------------------------- */
+
+.myButton {
+    box-shadow: 3px 4px 0px 0px #899599;
+    background: linear-gradient(to bottom, #ededed 5%, #bab1ba 100%);
+    background-color: #ededed;
+    border-radius: 15px;
+    border: 1px solid #d6bcd6;
+    display: inline-block;
+    cursor: pointer;
+    color: #3a8a9e;
+    font-family: Arial;
+    font-size: 17px;
+    padding: 7px 25px;
+    text-decoration: none;
+    text-shadow: 0px 1px 0px #e1e2ed;
+}
+
+.myButton:hover {
+    background: linear-gradient(to bottom, #bab1ba 5%, #ededed 100%);
+    background-color: #bab1ba;
+}
+
+.myButton:active {
+    position: relative;
+    top: 1px;
+}
+
+/*----------------------------------------------編輯按鈕UI--------------------------------------------------*/
+
+.deviceEditButton {
+    box-shadow: 3px 4px 0px 0px #899599;
+    background: linear-gradient(to bottom, #ededed 5%, #bab1ba 100%);
+    background-color: #ededed;
+    border-radius: 15px;
+    border: 1px solid #d6bcd6;
+    display: inline-block;
+    cursor: pointer;
+    color: #3a8a9e;
+    font-family: Arial;
+    font-size: 17px;
+    padding: 7px 25px;
+    text-decoration: none;
+    text-shadow: 0px 1px 0px #e1e2ed;
+}
+
+.deviceEditButton:hover {
+    background: linear-gradient(to bottom, #bab1ba 5%, #ededed 100%);
+    background-color: #bab1ba;
+}
+
+.deviceEditButton:active {
+    position: relative;
+    top: 1px;
+}
+
+
+/* -------------------------------------------- 新增群組內容UI -------------------------------------------- */
+
+* {
+    margin: 0;
+    padding: 0;
+}
+
+div.centent {
+    float: left;
+    text-align: center;
+    margin: 10px;
+}
+
+.Check_Button {
+    display: block;
+    margin: 2px 2px;
+    padding: 4px 10px;
+    background: linear-gradient(to bottom, #599bb3 5%, #408c99 100%);
+    background-color: #599bb3;
+    cursor: pointer;
+    font-size: 12px;
+    color: white;
+}

@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <title>測試軟體</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link href="css/bootstrap.min.css" rel="stylesheet" />
+
+    <script src="js/jquery-1.12.4.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+
+    <!-- 群組套件 -->
+    <link rel="stylesheet" href="http://cdn.static.runoob.com/libs/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="http://cdn.static.runoob.com/libs/jquery/2.1.1/jquery.min.js"></script>
+    <script src="http://cdn.static.runoob.com/libs/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script type="text/javascript">
+        $(function(){
+            $.ajax({
+                url:"jdiFindDevicesFun",
+                type:"POST",
+                dataType:"json",
+                contentType:"application/json;charset=utf-8",
+                success:function(response){
+                    $.each(response,function(i,v){
+                        var deviceId = v.deviceId;
+                        $("#deviceArea").append(`
+                        <div class="item">
+                            <div>
+                                <label>設備ID:</label>
+                                <span>${deviceId}</span>
+                            </div>
+                            <div>
+                                <label>設備名稱:</label>
+                                <input type="text" class="deviceName_class" value="${v.deviceName}" style="color: black;"/>
+                            </div>
+                            <div>
+                                <label>設備位置:</label>
+                                <input type="text" class="devicePlace_class" value="${v.place}" style="color: black;"/>
+                            </div>
+                            <div>
+                                <label>定時</label>
+                                <div>
+                                    <label>ON時間</label>
+                                    <input type="datetime-local" class="deviceOnTime" style="color: black;"/>
+                                </div>
+                                <div>
+                                    <label>OFF時間</label>
+                                    <input type="datetime-local" class="deviceOffTime" style="color: black;"/>
+                                </div>
+                            </div>
+                            <div>
+                                <label>目前IP:</label>
+                                <span>${v.ip}</span>
+                            </div>
+                            <div class="switch">
+                                <input type="checkbox" id="${deviceId}" name="switch-checkbox" class="switch-checkbox" value="${v.ip}">
+                                <!-- checked="checked" -->
+                                <label class="switch-label" for="${deviceId}">
+                                    <span class="switch-txt" turnOn="開" turnOff="關"></span>
+                                    <span class="switch-Round-btn"></span>
+                                </label>
+                            </div>
+                            <div>
+                                <a href="jdiDeviceEditPage?deviceId=${deviceId}" class="deviceEditButton">編輯設備</a>
+                            </div>
+                        </div>`);
+                        var ip = v.ip;
+                        var data = {"ip":ip};
+                        $.ajax({
+                            url:"jdiSurveillanceFun",
+                            type:"POST",
+                            dataType:"json",
+                            contentType:"application/json;charset=utf-8",
+                            data:JSON.stringify(data),
+                            success:function(deviceInfo){
+                                $.each(deviceInfo,function(i,v){
+                                    var switchState = v.switchState;
+                                    if(switchState == "on"){
+                                        $("#"+deviceId).prop("checked", true);
+                                    }else{
+                                        $("#"+deviceId).prop("checked", false);
+                                    }
+                                });
+                            },
+                            error:function(msg){
+                                console.log(msg);
+                                console.log("設備狀態收尋失敗");
+                            }
+                        });
+                    });
+                },
+                error:function(msg){
+                    console.log(msg);
+                    console.log("設備收尋失敗");
+                }
+            });
+            
+            $('#deviceArea').on('click', "input[name='switch-checkbox']", function() {
+                if($(this).prop("checked")){
+                    var ip = $(this).val();
+                    $.post("jdiSwitchFun",{sIp:ip,switchState:"on"});
+                }else{
+                    var ip = $(this).val();
+                    $.post("jdiSwitchFun",{sIp:ip,switchState:"off"});
+                }
+            });
+
+            $("#test").click(function(){
+                $.post("jdiTestFun");
+            });
+            
+        });
+    </script>
+</head>
+
+<style>
+
+</style>
+
+<body>
+    <div class="input-dyna-equipment-add">
+        <div id="deviceArea" name="deviceArea">
+            
+        </div>
+    </div>
+
+
+    <hr>
+
+
+    <a href="#" class="myButton" data-toggle="modal" data-target="#exampleModalCenter_AddEquipment">新增設備</a>
+    <a href="#" class="myButton" data-toggle="modal" data-target="#exampleModalCenter">新增群組</a>
+    <a href="#" class="myButton">修改群組</a>
+    <a href="#" class="myButton">刪除群組</a>
+    <label>現在: </label>
+    <!-- 日期 -->
+    <input type="hidden" id="date">
+    <label id="Ldate"></label>,
+    <!-- 星期幾 -->
+    <input type="hidden" id="day_list_Date">
+    <label id="day_list_Date_L"></label>
+    <!-- 空格符號 -->
+    &nbsp;&nbsp;
+    <!-- 時間 -->
+    <input type="hidden" id="date1">
+    <label id="Ldate1"></label>
+
+
+
+    <!-- 新增設備 按鈕內容 -->
+    <div class="modal fade" id="exampleModalCenter_AddEquipment" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalCenterTitle">新增設備</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span id="xxx1" aria-hidden="true">&times;</span>
+                        </button>
+                </div>
+
+                <div class="modal-body">
+                    <p>設備IP : <input type="text" class="form-control" id="IP"/></p>
+                    <p>新增設備名稱位置 : <input type="text" class="form-control" id="AddDeviceLocation" /></p>
+                </div>
+
+
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">取消</button>
+                    <button type="button" class="btn btn-primary" id="NewEquipment_Submit">提交</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+    <!-- 新增群組 按鈕內容 -->
+    <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalCenterTitle">新增群組</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span id="xxx2" aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+
+
+                <div class="modal-body">
+                    <p>新增群組名稱: <input type="text" id="Group_Name" /></p>
+                    <div class="centent">
+                        <p>未選中群組</p>
+                        <select multiple="multiple" id="select1" style="width:140px;height:160px;">
+                            <option value="192.168.1.107">192.168.1.107</option>
+                            <option value="192.168.1.111">192.168.1.111</option>
+                            <option value="192.168.1.116">192.168.1.116</option>
+                            <option value="192.168.1.166">192.168.1.166</option>
+                            <option value="192.168.1.177">192.168.1.177</option>
+                            <option value="192.168.1.124">192.168.1.124</option>
+                        </select>
+                        <div>
+                            <span class="Check_Button" id="add">選中添加到右邊&gt;&gt;</span>
+                            <span class="Check_Button" id="add_all">全部添加到右邊&gt;&gt;</span>
+                        </div>
+                    </div>
+
+                    <div class="centent">
+                        <p>選中群組</p>
+                        <select multiple="multiple" id="select2" style="width: 140px;height:160px;">
+                            <!-- <option value="8">选项8</option> -->
+                        </select>
+
+                        <div>
+                            <span class="Check_Button" id="remove">&lt;&lt;選中刪除到左邊</span>
+                            <span class="Check_Button" id="remove_all">&lt;&lt;全部刪除到左邊</span>
+                        </div>
+                    </div>
+                </div>
+                <button type="button" class="btn btn-primary" id="CreateTable">先建立群組表單</button>
+
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">取消</button>
+                    <button type="button" class="btn btn-primary" id="submit" onclick="addInput()">提交</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <hr>
+
+    <div class="input-dyna-add">
+    </div>
+
+    <button id="test">testCancelTimer</button>
+
+
+    <!-- DateTime -->
+    <script type="text/javascript" src="js/DateTime/DateTime.js"></script>
+
+    <!-- 設備 -->
+    <!-- 192.168.1.111-->
+    <script type="text/javascript" src="js/switchID/switchID1.js"></script>
+    <!-- 192.168.1.107-->
+    <script type="text/javascript" src="js/switchID/switchID2.js"></script>
+    <!-- 192.168.1.116-->
+    <script type="text/javascript" src="js/switchID/switchID3.js"></script>
+    <!-- 192.168.1.124-->
+    <script type="text/javascript" src="js/switchID/switchID4.js"></script>
+    <!-- 192.168.1.166-->
+    <script type="text/javascript" src="js/switchID/switchID5.js"></script>
+    <!-- 192.168.1.177-->
+    <script type="text/javascript" src="js/switchID/switchID6.js"></script>
+
+    <!-- 新增群組 -->
+    <!-- 新增群組提交功能 -->
+    <script type="text/javascript" src="js/switchID/Add_Group.js"></script>
+
+    <!-- 群組開關功能，傳遞給後台 -->
+    <script type="text/javascript" src="js/GroupEquipment/GroupEquipment.js"></script>
+    <!-- 新增設備，傳遞給後台 -->
+    <script type="text/javascript" src="js/NewEquipment/NewEquipment.js"></script>
+
+
+
+</body>
+
+</html>

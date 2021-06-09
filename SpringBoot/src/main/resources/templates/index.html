@@ -1,117 +1,296 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html lang="en">
+
 <head>
-<meta charset="UTF-8">
-<title>Index</title>
-<script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
-<script type="text/javascript">
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>測試軟體</title>
+    <!-- <link rel="shortcut icon" href="https://www.chromaate.com/favicon.ico" type="image/x-icon" /> -->
+    <link rel="shortcut icon" href="../static/images/small_LOGO.jpg" mce_href="//static.runoob.com/images/favicon.ico" type="image/x-icon">
 
-    function sleep (time) {
-    return new Promise((resolve) => setTimeout(resolve, time));
-    }
-
-    function autoOn(){
-        setTimeout(autoOn,6*1000);
-        var jsonData = {"deviceid":"","data":{"switch": "on"}};
-        $.ajax({
-            url:"http://192.168.1.114:8081/zeroconf/switch",
-            type:"POST",
-            dataType:"json",
-            contentType:"application/json;charset=utf-8",
-            data:JSON.stringify(jsonData),
-            success:function(response){
-                console.log(response);
-            },
-            error:function(msg){
-                console.log(msg);
-            }
-        });
-    };
-
-    function autoOff(){
-        setTimeout(autoOff,6*1000);
-        var jsonData = {"deviceid":"","data":{"switch": "off"}};
-        $.ajax({
-            url:"http://192.168.1.114:8081/zeroconf/switch",
-            type:"POST",
-            dataType:"json",
-            contentType:"application/json;charset=utf-8",
-            data:JSON.stringify(jsonData),
-            success:function(response){
-                console.log(response);
-            },
-            error:function(msg){
-                console.log(msg);
-            }
-        });
-    };
-
-    function autoFunction(){
-        autoOn();
-        sleep(3*1000).then(()=>{
-            autoOff();
-        });
-    };
+    <link rel="stylesheet" href="../static/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../static/css/animate.min.css">
+    <link rel="stylesheet" href="../static/css/font-awesome/font-awesome.min.css">
+    <link rel="stylesheet" href="../static/css/font.css">
+    <link rel="stylesheet" href="../static/css/iconfont.css">
+    <link rel="stylesheet" href="../static/lib/layui/xadmin/css/xadmin.css">
+    <link rel="stylesheet" href="../static/css/powerIndex.css">
 
 
-    $(function(){
-        $("#on").click(function(){
-            $.get("jdiFlagOnFun");
-            // var jsonData = {"deviceid":"","data":{"switch": "on"}};
-            // $.ajax({
-            //     url:"http://192.168.1.114:8081/zeroconf/switch",
-            //     type:"POST",
-            //     dataType:"json",
-            //     contentType:"application/json;charset=utf-8",
-            //     data:JSON.stringify(jsonData),
-            //     success:function(response){
-            //         console.log(response);
-            //     },
-            //     error:function(msg){
-            //         console.log(msg);
-            //     }
+    <script src="../static/js/jquery.min.js"></script>
+    <script src="../static/js/bootstrap.min.js"></script>
+    <script src="../static/lib/layui/layui.js" charset="utf-8"></script>
+    <script src="../static/js/powerIndex.js"></script>
 
-            // });
-        });
-
-        $("#off").click(function(){
-            $.get("jdiFlagOffFun");
-            // var jsonData = {"deviceid":"","data":{"switch": "off"}};
-            // $.ajax({
-            //     url:"http://192.168.1.114:8081/zeroconf/switch",
-            //     type:"POST",
-            //     dataType:"json",
-            //     contentType:"application/json;charset=utf-8",
-            //     data:JSON.stringify(jsonData),
-            //     success:function(response){
-            //         console.log(response);
-            //     },
-            //     error:function(msg){
-            //         console.log(msg);
-            //     }
-
-            // });
-        });
-
-        $("#autoSwitch").click(function(){
-            $.get("jdiAutoFun");
-        });
-
-        $("#test").click(function(){
-            sleep(3*1000).then(()=>{
-                $("#testArea img").attr('src','https://www.supermoto8.net/images/article/a1202bfa8387d8005991cca4fe765b462.jpg');
-            });
-        });
-
-    });
-</script>
 </head>
+
 <body>
-    <h1>Sonoff Controlle</h1>
-    <button name="on" id="on">ON</button>
-    <button name="off" id="off">OFF</button>
-    <div><button name="autoSwitch" id="autoSwitch">AUTO</button></div>
-    <div><button name="test" id="test">test</button></div>
-    <div name="testArea" id="testArea"><img src="" alt=""></div>
+    <!-- top -->
+    <div id="top1" class="container-fluid">
+        <div class="logo">
+            <a href="powerIndex.html"><i class="fa fa-bolt" style="font-size: 22px; color: yellow;"></i> 電力監控系統</a>
+        </div>
+        <div class="left_open">
+            <a>
+                <i title="展開左側欄" class="iconfont">&#xe699;</i>
+            </a>
+        </div>
+
+        <ul class="layui-nav right" lay-filter="">
+            <li class="layui-nav-item">
+                <a class="topText" href="javascript:;">admin</a>
+                <dl class="layui-nav-child">
+                    <!-- 二级菜单 -->
+                    <dd>
+                        <a onclick="xadmin.open('帳號管理','one_set.html')"><i class="fa fa-cog" style="font-size: 18px;"></i> 帳號管理</a>
+                    </dd>
+
+                    <dd>
+                        <a href="/"><i class="fa fa-sign-out" style="font-size: 18px;"></i> 退出</a>
+                    </dd>
+                </dl>
+            </li>`
+            <!-- <li class="layui-nav-item to-index">
+                    <a class="topText" href="index.html">返回首页</a>
+                </li> -->
+        </ul>
+
+    </div>
+    <!-- top -->
+
+
+    <!-- left -->
+    <div class="left-nav show_list" id="table1">
+        <div id="side-nav">
+            <ul id="nav">
+                <li>
+                    <a href="powerIndex.html">
+                        <i class="fa fa-home" lay-tips="首頁" style="font-size: 18px;"></i>
+                        <cite>首頁</cite>
+                        <!-- <i class="iconfont nav_right">&#xe697;</i> -->
+                    </a>
+                </li>
+
+                <li class="layui-nav-item">
+                    <a href="javascript:;">
+                        <i class="fa fa-building" lay-tips="樓層管理" style="font-size: 18px;"></i>
+                        <cite>樓層管理</cite>
+                        <i class="iconfont nav_right">&#xe697;</i>
+                    </a>
+                    <ul class="sub-menu">
+                        <li>
+                            <a onclick="xadmin.add_tab('所有設備','All_Equipment.html')">
+                                <i class="fa fa-image" lay-tips="所有設備" style="font-size: 18px;"></i>
+                                <cite>所有設備</cite>
+                            </a>
+                        </li>
+
+                        <li>
+                            <a onclick="xadmin.add_tab('16F單線圖','16f.html')">
+                                <i class="fa fa-image" lay-tips="16F單線圖" style="font-size: 18px;"></i>
+                                <cite>新增設備</cite>
+                            </a>
+                        </li>
+
+                        <li>
+                            <a href="javascript:;">
+                                <i class="fa fa-building-o" lay-tips="15F" style="font-size: 18px;"></i>
+                                <cite>15F</cite>
+                                <i class="iconfont nav_right">&#xe697;</i>
+                            </a>
+                            <ul class="sub-menu">
+                                <li>
+                                    <a onclick="xadmin.add_tab('15F單線圖','15f.html')">
+                                        <i class="fa fa-image" lay-tips="15F單線圖" style="font-size: 18px;"></i>
+                                        <cite>單線圖</cite>
+                                    </a>
+
+                                </li>
+                                <li>
+                                    <a onclick="xadmin.add_tab('15F曲線圖','electrical-15f.html')">
+                                        <i class="fa fa-line-chart" lay-tips="15F曲線圖" style="font-size: 18px;"></i>
+                                        <cite>曲線圖</cite>
+                                    </a>
+                                </li>
+                            </ul>
+                        </li>
+
+                        <li>
+                            <a href="javascript:;">
+                                <i class="fa fa-building-o" lay-tips="14F" style="font-size: 18px;"></i>
+                                <cite>14F</cite>
+                                <i class="iconfont nav_right">&#xe697;</i>
+                            </a>
+                            <ul class="sub-menu">
+                                <li>
+                                    <a onclick="xadmin.add_tab('14F單線圖','14f.html')">
+                                        <i class="fa fa-image" lay-tips="14F單線圖" style="font-size: 18px;"></i>
+                                        <cite>單線圖</cite>
+                                    </a>
+
+                                </li>
+                                <li>
+                                    <a onclick="xadmin.add_tab('14F曲線圖','electrical-14f.html')">
+                                        <i class="fa fa-line-chart" lay-tips="14F曲線圖" style="font-size: 18px;"></i>
+                                        <cite>曲線圖</cite>
+                                    </a>
+                                </li>
+                            </ul>
+                        </li>
+
+                        <li>
+                            <a href="javascript:;">
+                                <i class="fa fa-building-o" lay-tips="13F" style="font-size: 18px;"></i>
+                                <cite>13F</cite>
+                                <i class="iconfont nav_right">&#xe697;</i>
+                            </a>
+                            <ul class="sub-menu">
+                                <li>
+                                    <a onclick="xadmin.add_tab('13F單線圖','13f.html')">
+                                        <i class="fa fa-image" lay-tips="13F單線圖" style="font-size: 18px;"></i>
+                                        <cite>單線圖</cite>
+                                    </a>
+
+                                </li>
+                                <li>
+                                    <a onclick="xadmin.add_tab('13F曲線圖','electrical-13f.html')">
+                                        <i class="fa fa-line-chart" lay-tips="13F曲線圖" style="font-size: 18px;"></i>
+                                        <cite>曲線圖</cite>
+                                    </a>
+                                </li>
+                            </ul>
+                        </li>
+
+                        <li>
+                            <a href="javascript:;">
+                                <i class="fa fa-building-o" lay-tips="12F" style="font-size: 18px;"></i>
+                                <cite>12F</cite>
+                                <i class="iconfont nav_right">&#xe697;</i>
+                            </a>
+                            <ul class="sub-menu">
+                                <li>
+                                    <a onclick="xadmin.add_tab('12F單線圖','12f.html')">
+                                        <i class="fa fa-image" lay-tips="12F單線圖" style="font-size: 18px;"></i>
+                                        <cite>單線圖</cite>
+                                    </a>
+                                    <a onclick="xadmin.add_tab('12F-B單線圖','12f-b.html')">
+                                        <i class="fa fa-image" lay-tips="12F-B單線圖" style="font-size: 18px;"></i>
+                                        <cite>單線圖-B</cite>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a onclick="xadmin.add_tab('12F曲線圖','electrical-12f.html')">
+                                        <i class="fa fa-line-chart" lay-tips="12F曲線圖" style="font-size: 18px;"></i>
+                                        <cite>曲線圖</cite>
+                                    </a>
+                                    <a onclick="xadmin.add_tab('12F-B曲線圖','electrical-12fb.html')">
+                                        <i class="fa fa-line-chart" lay-tips="12F-B曲線圖" style="font-size: 18px;"></i>
+                                        <cite>曲線圖-B</cite>
+                                    </a>
+                                </li>
+                            </ul>
+                        </li>
+
+                        <li>
+                            <a href="javascript:;">
+                                <i class="fa fa-building-o" lay-tips="11F" style="font-size: 18px;"></i>
+                                <cite>11F</cite>
+                                <i class="iconfont nav_right">&#xe697;</i>
+                            </a>
+                            <ul class="sub-menu">
+                                <li>
+                                    <a onclick="xadmin.add_tab('11F單線圖','11f.html')">
+                                        <i class="fa fa-image" lay-tips="11F單線圖" style="font-size: 18px;"></i>
+                                        <cite>單線圖</cite>
+                                    </a>
+                                    <a onclick="xadmin.add_tab('11F-B單線圖','11f-b.html')">
+                                        <i class="fa fa-image" lay-tips="11F-B單線圖" style="font-size: 18px;"></i>
+                                        <cite>單線圖-B</cite>
+                                    </a>
+
+                                </li>
+                                <li>
+                                    <a onclick="xadmin.add_tab('11F曲線圖','electrical-11f.html')">
+                                        <i class="fa fa-line-chart" lay-tips="11F曲線圖" style="font-size: 18px;"></i>
+                                        <cite>曲線圖</cite>
+                                    </a>
+                                    <a onclick="xadmin.add_tab('11F-B曲線圖','electrical-11fb.html')">
+                                        <i class="fa fa-line-chart" lay-tips="11F-B曲線圖" style="font-size: 18px;"></i>
+                                        <cite>曲線圖-B</cite>
+                                    </a>
+                                </li>
+                            </ul>
+                        </li>
+
+                    </ul>
+                </li>
+
+
+                <li class="layui-nav-item">
+                    <a href="javascript:;">
+                        <i class="fa fa-sitemap" lay-tips="架構圖" style="font-size: 18px;"></i>
+                        <cite>架構圖</cite>
+                        <i class="iconfont nav_right">&#xe697;</i></a>
+                    <ul class="sub-menu">
+                        <li>
+                            <a onclick="xadmin.add_tab('標題','order-list.html')">
+                                <i class="iconfont">&#xe6a7;</i>
+                                <cite>標題</cite>
+                            </a>
+                        </li>
+                        <li>
+                            <a onclick="xadmin.add_tab('標題','invoice.html')">
+                                <i class="iconfont">&#xe6a7;</i>
+                                <cite>標題</cite>
+                            </a>
+                        </li>
+                        <li>
+                            <a onclick="xadmin.add_tab('標題','return-order.html')">
+                                <i class="iconfont">&#xe6a7;</i>
+                                <cite>標題</cite>
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+
+
+
+        </div>
+    </div>
+    <!-- <div class="x-slide_left"></div> -->
+    <!-- left -->
+
+
+    <div class="page-content">
+        <div class="layui-tab tab" lay-filter="xbs_tab" lay-allowclose="false">
+            <ul class="layui-tab-title">
+                <li class="home">
+                    <!-- <i class="far fa-home-lg"></i> -->
+                    MB2
+                </li>
+            </ul>
+            <div class="layui-unselect layui-form-select layui-form-selected" id="tab_right">
+                <dl>
+                    <dd data-type="this">關閉當前</dd>
+                    <dd data-type="other">關閉其它</dd>
+                    <dd data-type="all">關閉全部</dd>
+                </dl>
+            </div>
+            <div class="layui-tab-content">
+                <div class="layui-tab-item layui-show">
+                    <iframe src='mb2.html' frameborder="0" scrolling="yes" class="x-iframe"></iframe>
+                </div>
+            </div>
+            <div id="tab_show"></div>
+        </div>
+    </div>
+
+
+
+
+
 </body>
+
 </html>

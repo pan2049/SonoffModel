@@ -1,0 +1,302 @@
+
+@import url(../lib/layui/css/layui.css);
+*{
+    margin: 0px;
+    padding: 0px;
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
+
+/* a{
+    text-decoration: none;
+} */
+
+html{
+    width: 100%;
+    height: 100%;
+    overflow-x:hidden; 
+    overflow-y:auto;
+}
+
+body{
+    width: 100%;
+    min-height: 100%;
+    background: linear-gradient(rgba(255, 255, 255, 0.7), rgba(255, 255, 255, 0.7)),url(../images/chromaBg2.jpg) ;
+    background-size: 100% 100%; 
+    /* background-size: 100% 100%;
+
+    background-image: linear-gradient(rgba(255, 255, 255, 0.5), rgba(255, 255, 255, 0.5)), url(../images/section2.png);*/
+    background-repeat: no-repeat;
+    background-position: center;
+    background-attachment: fixed;
+    background-size: cover;
+}
+
+.x-red{
+    color: #007bff;
+}
+
+
+/* top start-----------------------------------------------------------------------------------------*/
+#top1 {
+    width: 100%;
+    height: 50px;
+    background: linear-gradient(rgba(0, 102, 187, 0.6), rgba(0, 102, 187, 1), rgba(0, 102, 187, 1));
+    /* background-color: #0f2159; */
+    padding: 0;
+    margin: 0;
+    box-shadow:0px 0px 7px 8px #77838f;
+}
+
+#top1 a,.layui-nav .layui-nav-item a{
+    color: #fff; 
+    text-decoration:none;
+}
+
+#top1 .logo a:hover{
+    color: #00cccc !important;
+}
+
+#top1 .logo a{
+    float: left;
+    font-size: 24px;
+    font-weight: bold;
+    padding-left: 20px;
+    line-height: 50px;
+    width: 196px;
+}
+
+
+ #top1 .left_open{
+    height: 50px;
+    float: left;
+    margin-left: 30px;
+    color: #ffffff;
+}
+
+
+#top1 .left_open i{
+    display: block;
+    background: rgba(255,255,255,0.1);
+    width: 35px;
+    height: 35px;
+    line-height: 35px;
+    border-radius: 3px;
+    text-align: center;
+    margin-top: 8px;
+    cursor: pointer;
+}
+#top1 .left_open i:hover{
+    background: #00cccc;
+}
+
+
+
+
+#top1 .right{
+    background-color:rgba(0,0,0,0);
+    float: right;
+}
+
+#top1 .layui-nav-item{
+    line-height: 50px;
+    height: 50px !important;
+}
+
+.layui-nav .layui-nav-item a{
+    cursor: pointer;
+    font-size: 18px !important;
+}
+
+.topText:hover{
+    color: #00cccc !important;
+}
+
+#top1 .layui-nav-child{
+    top: 50px;
+}
+
+.layui-nav .layui-nav-child a{
+    color: rgb(12, 12, 12) !important;
+    /* cursor: pointer; */
+}
+
+.layui-nav .layui-nav-child a:hover{
+    color: rgb(255, 255, 255) !important;
+    background-color: #00cccc;
+}
+
+/* top end----------------------------------------------------------------------------------------- */
+
+
+/* left start--------------------------------------------------------------------------------------- */
+.left-nav{
+    position: absolute;
+    top: 50px;
+    bottom: 0px; 
+    left: 0;
+    z-index: 2;
+    background: linear-gradient(rgba(0, 102, 187, 0.9), rgba(0, 102, 187, 1), rgba(0, 102, 187, 1));
+    /* background-color: rgb(3, 33, 78); */
+    width: 220px;
+    max-width: 220px;
+    overflow-y: auto;
+    /* overflow-x:hidden; */
+}
+
+#nav a{
+    color: #ffffff !important;
+    text-decoration: none;
+}
+
+.left-nav #nav li a{
+    font-size: 14px;
+    padding: 10px 15px 10px 15px;
+    display: block;
+    cursor: pointer;
+    border-left: 4px solid transparent;
+    transition: all 0.3s;
+}
+
+.left-nav #nav a:hover{
+    /* background: #00cccc !important; */
+    /* color: #0066BB !important; */
+    background-color: rgba(255,255,255,0.2) !important;
+    /* border-color:  #04564e !important; */
+}
+
+.left-nav a.active{
+    background: rgba(255,255,255,0.2) !important;
+    color: #fff;
+    /* border-color:  #04564e !important; */
+}
+
+.left-nav #nav li a cite{
+    font-size: 18px;
+}
+
+.left-nav #nav li .sub-menu{
+    display: none;
+}
+
+.left-nav #nav li .sub-menu li a{
+    padding: 12px 15px 12px 30px;
+    font-size: 14px;
+    cursor: pointer;
+}
+
+.left-nav #nav li .sub-menu li .sub-menu li a{
+    padding-left: 45px;
+}
+
+.left-nav #nav li .sub-menu li a i{
+    font-size: 16px;
+}
+
+.left-nav #nav li a i{
+    padding-right: 8px;
+    line-height: 26px;
+}
+
+.left-nav #nav li .nav_right{
+    float: right;
+    font-size: 16px;
+}
+
+.electricity{
+    width: 25px;
+    height: 25px;
+}
+.electricity:hover{
+    background-image: url(../images/高压电塔2.svg);
+}
+
+/* left start--------------------------------------------------------------------------------------- */
+
+
+/* right start--------------------------------------------------------------------------------------- */
+.page-content{
+    /* background-color: red; */
+    position: absolute;
+    top: 50px;
+    left: 220px;
+    /* overflow: hidden; */
+    z-index: 1;
+    padding: 0PX;
+    margin: 0px;
+}
+
+/* .page-content .layui-tab-title{
+    margin-top: -10px;
+    line-height: 45px;
+    height: 45px;
+    background: #EFEEF0 ;
+    position: relative;
+    z-index: 100;
+}
+
+.page-content .layui-tab-title li.home i{
+    padding-right: 5px;
+} */
+
+.page-body{
+    padding: 10px;
+    /* background-color: red; */
+}
+
+
+.immediate{
+    text-align: center;
+    margin-top: 30px;
+}
+
+.immediate h3{
+    padding-bottom: 20px;
+    color: #007cc6;
+    font-weight: bold;
+}
+
+.btn-group button{
+    background-color: #fafafa;
+}
+
+.jilu a{
+    color: #007bff;
+}
+
+
+table{
+    width: 505px;
+    height: 600px;
+    line-height: 30px;
+    margin-top: 30px;
+    font-size: 20px;
+    color: #ffffff !important;
+    text-align: center;
+    border-radius: 10px;
+    box-shadow: inset 0px 0px 17px 6px #449cc2;
+    background-color: #cacaca;
+}
+
+tr:nth-child(odd){
+    background-color: #e3e4e6;
+    /* border-radius: 10px; */
+    box-shadow: inset 0px 0px 17px 2px #449cc2;
+}
+
+#rigtime{
+    margin-top: 30px;
+}
+
+.time, .lishi{
+    padding-left: 220px;
+}
+
+
+.biao{
+    width: 1000px;
+    height: 600px;
+    background-color: #fff;
+    margin-left: 20px;
+    margin-top: 55px;
+}
+/* right start--------------------------------------------------------------------------------------- */

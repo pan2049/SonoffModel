@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <title>設備編輯</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link href="css/bootstrap.min.css" rel="stylesheet" />
+
+    <script src="js/jquery-1.12.4.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+
+    <!-- 群組套件 -->
+    <link rel="stylesheet" href="http://cdn.static.runoob.com/libs/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="http://cdn.static.runoob.com/libs/jquery/2.1.1/jquery.min.js"></script>
+    <script src="http://cdn.static.runoob.com/libs/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script type="text/javascript">
+        $(function(){
+            
+            
+            
+        });
+    </script>
+</head>
+
+<style>
+
+</style>
+
+<body>
+    <div class="input-dyna-equipment-add">
+        <div id="deviceArea" name="deviceArea">
+            
+        </div>
+    </div>
+
+
+    <hr>
+
+
+    <a href="#" class="myButton" data-toggle="modal" data-target="#exampleModalCenter_AddEquipment">新增設備</a>
+    <a href="#" class="myButton" data-toggle="modal" data-target="#exampleModalCenter">新增群組</a>
+    <a href="#" class="myButton">修改群組</a>
+    <a href="#" class="myButton">刪除群組</a>
+    <label>現在: </label>
+    <!-- 日期 -->
+    <input type="hidden" id="date">
+    <label id="Ldate"></label>,
+    <!-- 星期幾 -->
+    <input type="hidden" id="day_list_Date">
+    <label id="day_list_Date_L"></label>
+    <!-- 空格符號 -->
+    &nbsp;&nbsp;
+    <!-- 時間 -->
+    <input type="hidden" id="date1">
+    <label id="Ldate1"></label>
+    
+    <h1>設備編輯</h1>
+    <div class="item">
+        <div>
+            <label>設備ID</label>
+            <span id="deviceId" name="deviceId" th:text=${deviceId}></span>
+        </div>
+        <div>
+            <label>目前設備IP</label>
+            <span id="ip" name="ip" th:text=${ip}></span>
+        </div>
+        <div>
+            <label>設備名稱</label>
+            <input type="text" id="deviceName" name="deviceName" th:value=${deviceName}/>
+        </div>
+        <div>
+            <label>設備位置</label>
+            <input type="text" id="place" name="place" th:value=${place}/>
+        </div>
+    </div> 
+    <div>
+        <button id="addTimer" name="addTimer">新增排程</button>
+    </div>
+    <div id="timerArea" name="timerArea">
+        <div>
+            <div>
+                <label>時程日期</label>
+                <span>日期 : </span><input type="date" name="date" class="dateClass"/>
+            </div>
+            <div> 
+                <label>期間</label>
+                <div><span>開始時間(ON)</span><input type="time" name="onTime" class="onTimeClass"/></div>
+                <div><span>結束時間(OFF)</span><input type="time" name="offTime" class="offTimeClass"/></div>
+                <div><span>間距</span><input type="text" name="onTime" class="onTimeClass"/></div>
+            </div>
+            <div>
+                <label>動作</label>
+                <input type="radio" name="action" class="action" value="on">
+                <label>ON</label>
+                <input type="radio" name="action" class="action" value="off">
+                <label>OFF</label>
+            </div>
+            <div><button name="save" class="saveButton">SAVE</button></div>
+        </div>
+    </div>
+
+
+
+
+    <!-- DateTime -->
+    <script type="text/javascript" src="js/DateTime/DateTime.js"></script>
+
+    <!-- 設備 -->
+    <!-- 192.168.1.111-->
+    <script type="text/javascript" src="js/switchID/switchID1.js"></script>
+    <!-- 192.168.1.107-->
+    <script type="text/javascript" src="js/switchID/switchID2.js"></script>
+    <!-- 192.168.1.116-->
+    <script type="text/javascript" src="js/switchID/switchID3.js"></script>
+    <!-- 192.168.1.124-->
+    <script type="text/javascript" src="js/switchID/switchID4.js"></script>
+    <!-- 192.168.1.166-->
+    <script type="text/javascript" src="js/switchID/switchID5.js"></script>
+    <!-- 192.168.1.177-->
+    <script type="text/javascript" src="js/switchID/switchID6.js"></script>
+
+    <!-- 新增群組 -->
+    <!-- 新增群組提交功能 -->
+    <script type="text/javascript" src="js/switchID/Add_Group.js"></script>
+
+    <!-- 群組開關功能，傳遞給後台 -->
+    <script type="text/javascript" src="js/GroupEquipment/GroupEquipment.js"></script>
+    <!-- 新增設備，傳遞給後台 -->
+    <script type="text/javascript" src="js/NewEquipment/NewEquipment.js"></script>
+
+
+
+</body>
+
+</html>
